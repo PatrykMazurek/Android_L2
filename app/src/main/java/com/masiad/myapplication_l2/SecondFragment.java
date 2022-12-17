@@ -9,6 +9,8 @@ import android.widget.Adapter;
 import android.widget.SimpleAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 import com.masiad.myapplication_l2.databinding.FragmentSecondBinding;
 
@@ -39,13 +41,14 @@ public class SecondFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding.personList.setAdapter(buildList());
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.personList.setAdapter(buildList());
+
 
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +60,21 @@ public class SecondFragment extends Fragment {
     }
 
     public SimpleAdapter buildList(){
-        List<Map <String, String>> personMap = new ArrayList<Map <String, String>>() {
-        };
-        for (Person p : MainActivity.personList){
-            Map<String, String> temp = new HashMap<>();
-            temp.put("name", p.name+" "+p.lastName);
-            temp.put("city", p.city);
-            personMap.add(temp);
-        }
+        List<Map <String, String>> personMap = new ArrayList<Map <String, String>>();
+        LiveData<List<Person>> tempLiveData = MainActivity.personRepository.getListPerson();
+
+        tempLiveData.observe(this, new Observer<List<Person>>() {
+            @Override
+            public void onChanged(List<Person> people) {
+                for(Person p : people){
+                    Map<String, String> temp = new HashMap<>();
+                    temp.put("name", p.name+" "+p.lastName);
+                    temp.put("city", p.city);
+                    personMap.add(temp);
+                }
+            }
+        });
+
         SimpleAdapter simple = new SimpleAdapter(getContext(), personMap,
                 android.R.layout.simple_list_item_2,
                 new String[]{"name", "city"},

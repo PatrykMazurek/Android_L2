@@ -7,34 +7,39 @@
         android:layout_height="match_parent"
         tools:context=".FirstFragment">
 
-    <TextView
-            android:id="@+id/textview_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_first_fragment"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/button_first"
-    />
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"/>
+        <TextView
+                android:id="@+id/textview_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hello_first_fragment"
+        />
+        <EditText
+                android:layout_width="287dp"
+                android:layout_height="43dp"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/eTInfo"
+                android:hint="dowolny tekst"
+        />
+        <Button
+                android:text="Strat Progress Bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_progresBar"/>
+        <Button
+                android:id="@+id/button_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next"
+        />
+    </LinearLayout>
 
-    <EditText
-            android:layout_width="287dp"
-            android:layout_height="43dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/eTInfo"
-            android:hint="dowolny tekst"
-            tools:layout_editor_absoluteY="330dp"
-            tools:layout_editor_absoluteX="60dp"/>
-    <Button
-            android:id="@+id/button_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/next"
-            app:layout_constraintTop_toBottomOf="@id/textview_first"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-    />
 </androidx.constraintlayout.widget.ConstraintLayout>

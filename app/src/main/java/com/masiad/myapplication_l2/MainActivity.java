@@ -22,17 +22,17 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-    public static List<Person> personList;
-
+//    public static List<Person> personList;
+    public static PersonRepository personRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        personList = new ArrayList<>();
-        personList.add(new Person(1, "Patryk", "Mazurek", "Kraków"));
-        personList.add(new Person(2, "Jan", "Nowak", "Kraków"));
-        personList.add(new Person(3, "Ewa", "Rak", "Poznań"));
+        personRepository = new PersonRepository(getApplication());
+//        personList = new ArrayList<>();
+//        personList.add(new Person(1, "Patryk", "Mazurek", "Kraków"));
+//        personList.add(new Person(2, "Jan", "Nowak", "Kraków"));
+//        personList.add(new Person(3, "Ewa", "Rak", "Poznań"));
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

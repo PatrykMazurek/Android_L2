@@ -40,6 +40,10 @@ public class FormActivity extends AppCompatActivity {
                 String name = etName.getText().toString();
                 String lastName = etLastName.getText().toString();
                 String city = etCity.getText().toString();
+                MainActivity.personRepository.insertPerson(
+                        new Person(0, name, lastName, city)
+                );
+                finish();
             }
         });
 
